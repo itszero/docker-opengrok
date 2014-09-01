@@ -12,7 +12,7 @@ instance of OpenGrok by one command.
 To start the OpenGrok, simply run:
 
 ```sh
-docker run -d -v [source to be indexed on host]:/src -p [public port]:8080 itszero/opengrok
+docker run -d -v [source to be indexed on host]:/src -p [public port]:8080 steinwaywhw/opengrok
 ```
 
 It may take a while for the indexer to finish the first-time indexing, after
@@ -20,6 +20,4 @@ that, the search engine is available at `http://host:[public port]/source/`.
 
 ## Note
 
-The project does not support dynamic index updating for now. It could be
-achieved by `touch /grok/reindex` in the container. However, I haven't found
-the best way to expose this mechanism.
+The project supports dynamic index updating through `inotifywait` recursively on the source folder. However, `touch` doesn't help. You should add or delete or modify the content of some source file to make it happen.
