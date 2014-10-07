@@ -12,7 +12,14 @@ cd /opengrok/bin
 # ... and we keep running the indexer to keep the container on
 echo "** Waiting for source updates..."
 touch $OPENGROK_INSTANCE_BASE/reindex
-inotifywait -mr -e CLOSE_WRITE $OPENGROK_INSTANCE_BASE/src | while read f; do
+
+if [ $INOTIFY_NOT_RECURSIVE ]; then
+  INOTIFY_CMDLINE="inotifywait -m -e CLOSE_WRITE $OPENGROK_INSTANCE_BASE/reindex"
+else
+  INOTIFY_CMDLINE="inotifywait -mr -e CLOSE_WRITE $OPENGROK_INSTANCE_BASE/src"
+fi
+
+$INOTIFY_CMDLINE | while read f; do
   printf "*** %s\n" "$f"
   echo "*** Updating index"
   ./OpenGrok index
