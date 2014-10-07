@@ -24,6 +24,6 @@ that, the search engine is available at `http://host:[public port]/source/`.
 
 The project supports dynamic index updating through `inotifywait` recursively on the source folder. 
 This can be disabled with the environment variable `INOTIFY_NOT_RECURSIVE` at runtime.
-Also, if you have more than 8192 files to watch, you will need to increase the amount of inotify watches allowed per user `(/proc/sys/fs/inotify/max_user_watches)`. To do that, you can use the environment variable `INOTIFY_MAX_WATCHES`.
+Also, if you have more than 8192 files to watch, you will need to increase the amount of inotify watches allowed per user `(/proc/sys/fs/inotify/max_user_watches)` on your host system.
 
 NOTE: `touch` doesn't trigger inotify. You should add, delete or modify the content of some source file to make it happen.
