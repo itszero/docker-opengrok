@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Zero Cho "http://itsze.ro/"
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV OPENGROK_INSTANCE_BASE /grok
 
 RUN apt-get update
