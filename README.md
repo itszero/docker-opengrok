@@ -20,6 +20,17 @@ docker run -d -v [source to be indexed on host]:/src -p [public port]:8080 itsze
 It may take a while for the indexer to finish the first-time indexing, after
 that, the search engine is available at `http://host:[public port]/source/`.
 
+##  Authentication
+### Subversion
+If your repository is secured, adding the following volumes allows the container to connect to the remote repository using your existing subversion credentials cache. This assumes you have run svn operations on the host user.
+
+```sh
+docker run -d -v [source to be indexed on host]:/src \
+-v $HOME/.subversion/auth/svn.simple/[auth file name]:/root/.subversion/auth/svn.simple/[auth file name] \
+-v $HOME/.subversion/auth/svn.simple/[auth file name]:/usr/share/tomcat7/.subversion/auth/svn.simple/[auth file name]
+-p [public port]:8080 itszero/opengrok
+```
+
 ## Note
 
 The project supports dynamic index updating through `inotifywait` recursively on the source folder. 
