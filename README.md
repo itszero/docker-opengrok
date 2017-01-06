@@ -27,7 +27,7 @@ If your repository is secured, adding the following volumes allows the container
 ```sh
 docker run -d -v [source to be indexed on host]:/src \
 -v $HOME/.subversion/auth/svn.simple/[auth file name]:/root/.subversion/auth/svn.simple/[auth file name] \
--v $HOME/.subversion/auth/svn.simple/[auth file name]:/usr/share/tomcat7/.subversion/auth/svn.simple/[auth file name]
+-v $HOME/.subversion/auth/svn.simple/[auth file name]:/usr/share/tomcat7/.subversion/auth/svn.simple/[auth file name] \
 -p [public port]:8080 itszero/opengrok
 ```
 
